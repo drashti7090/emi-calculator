@@ -17,7 +17,7 @@ class _EmiCalculatorFinalState extends State<EmiCalculatorFinal> {
 
   @override
   Widget build(BuildContext context) {
-    print("convert to double ${double.parse("10.20")}");
+    debugPrint("convert to double ${double.parse("10.20")}");
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
