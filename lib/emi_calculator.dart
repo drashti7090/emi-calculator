@@ -234,6 +234,7 @@ class _EmiCalculatorFinalState extends State<EmiCalculatorFinal> {
                               padding: const EdgeInsets.only(
                                   left: 10.0, right: 30, top: 20),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
                                     height: 40,
@@ -250,9 +251,7 @@ class _EmiCalculatorFinalState extends State<EmiCalculatorFinal> {
                                         fontSize: 17,
                                         fontWeight: FontWeight.w300),
                                   ),
-                                  const SizedBox(
-                                    width: 70,
-                                  ),
+
                                   Text(
                                     "Rs.$sliderValue",
                                     style: const TextStyle(
@@ -285,9 +284,7 @@ class _EmiCalculatorFinalState extends State<EmiCalculatorFinal> {
                                             fontSize: 17,
                                             fontWeight: FontWeight.w300),
                                       ),
-                                      const SizedBox(
-                                        width: 100,
-                                      ),
+
                                       Text(
                                         "Rs.${calculateInt(sliderValue, interest, time).toStringAsFixed(1)}",
                                         style: const TextStyle(
