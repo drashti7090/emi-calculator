@@ -1,6 +1,6 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class EmiCalculatorFinal extends StatefulWidget {
   const EmiCalculatorFinal({Key? key}) : super(key: key);
@@ -17,7 +17,6 @@ class _EmiCalculatorFinalState extends State<EmiCalculatorFinal> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("convert to double ${double.parse("10.20")}");
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -30,41 +29,19 @@ class _EmiCalculatorFinalState extends State<EmiCalculatorFinal> {
                   color: const Color(0xff2B2C31),
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10),
                         child: Row(
                           children: [
-                            Container(
-                              height: 60,
-                              width: 60,
-                              margin: const EdgeInsets.only(left: 5),
-                              decoration: const BoxDecoration(
-                                  color: Color(0xff2B2C31),
-                                  shape: BoxShape.circle,
-                                  gradient: RadialGradient(
-                                    colors: [
-                                      Color(0xff32373B),
-                                      Color(0xff272B30),
-                                    ],
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(color: Colors.white24, blurRadius: 10)
-                                  ]),
-                              child: const Icon(
-                                Icons.arrow_back_ios_new_outlined,
-                                color: Color(0xffBABDC0),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 85,
-                            ),
-                            const Text(
+                            Spacer(),
+                            Text(
                               "EMI Calculator",
                               style: TextStyle(
                                   color: Color(0xffE6E7E8),
                                   fontSize: 25,
                                   fontWeight: FontWeight.w400),
-                            )
+                            ),
+                            Spacer(),
                           ],
                         ),
                       ),
@@ -75,7 +52,7 @@ class _EmiCalculatorFinalState extends State<EmiCalculatorFinal> {
                         height: MediaQuery.of(context).size.height - 120,
                         width: MediaQuery.of(context).size.width - 2,
                         padding:
-                        const EdgeInsets.only(top: 15, left: 30, right: 30),
+                            const EdgeInsets.only(top: 15, left: 30, right: 30),
                         decoration: const BoxDecoration(
                             color: Color(0xff252931),
                             boxShadow: [
@@ -107,7 +84,8 @@ class _EmiCalculatorFinalState extends State<EmiCalculatorFinal> {
                                 bottom: 20,
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   const Text(
                                     "Loan Amount",
@@ -147,7 +125,8 @@ class _EmiCalculatorFinalState extends State<EmiCalculatorFinal> {
                                 bottom: 20,
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   const Text(
                                     "Rate of interest",
@@ -187,7 +166,8 @@ class _EmiCalculatorFinalState extends State<EmiCalculatorFinal> {
                                 bottom: 20,
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   const Text(
                                     "Loan tenure",
@@ -206,40 +186,43 @@ class _EmiCalculatorFinalState extends State<EmiCalculatorFinal> {
                                 ],
                               ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  height: 160,
-                                  width: 160,
-                                  margin: const EdgeInsets.only(
-                                      top: 10, left: 10, right: 30),
-                                  decoration: BoxDecoration(
-                                      color: const Color(0xff252931),
-                                      border: Border.all(
-                                          color: const Color(0xffF3F6FB),
-                                          width: 30),
-                                      shape: BoxShape.circle),
-                                ),
-                                Text(
-                                  "EMI\nRs.${calculateEmi(sliderValue, interest, time).toStringAsFixed(1)}",
-                                  style: const TextStyle(
-                                      color: Color(0xffF3F6FB),
-                                      fontSize: 21,
-                                      fontWeight: FontWeight.w700),
-                                )
-                              ],
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  CircularPercentIndicator(
+                                    radius: 70.0,
+                                    lineWidth: 35.0,
+                                    percent: 10 *
+                                        (calculateEmi(
+                                            sliderValue, interest, time)) /
+                                        sliderValue,
+                                    progressColor: const Color(0xffBB868F),
+                                    backgroundColor: const Color(0xffD2D3D3),
+                                  ),
+                                  Text(
+                                    "EMI\nRs.${calculateEmi(sliderValue, interest, time).toStringAsFixed(1)}",
+                                    style: const TextStyle(
+                                        color: Color(0xffF3F6FB),
+                                        fontSize: 21,
+                                        fontWeight: FontWeight.w700),
+                                  )
+                                ],
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(
-                                  left: 10.0, right: 30, top: 20),
+                                  left: 10.0, top: 20, right: 10),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
-                                    height: 40,
-                                    width: 40,
-                                    margin: const EdgeInsets.only(right: 15),
+                                    height: 30,
+                                    width: 30,
+                                    margin: const EdgeInsets.only(right: 10),
                                     decoration: const BoxDecoration(
                                         color: Color(0xffBB868F),
                                         shape: BoxShape.circle),
@@ -248,15 +231,15 @@ class _EmiCalculatorFinalState extends State<EmiCalculatorFinal> {
                                     "Principal amount",
                                     style: TextStyle(
                                         color: Color(0xffF3F6FB),
-                                        fontSize: 17,
+                                        fontSize: 15,
                                         fontWeight: FontWeight.w300),
                                   ),
-
+                                  const Spacer(),
                                   Text(
                                     "Rs.$sliderValue",
                                     style: const TextStyle(
                                         color: Color(0xffF3F6FB),
-                                        fontSize: 19,
+                                        fontSize: 15,
                                         fontWeight: FontWeight.w600),
                                   )
                                 ],
@@ -264,35 +247,31 @@ class _EmiCalculatorFinalState extends State<EmiCalculatorFinal> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(
-                                  left: 10.0, right: 30, top: 20),
+                                  left: 10.0, top: 20, right: 10),
                               child: Row(
                                 children: [
                                   Container(
-                                    height: 40,
-                                    width: 40,
+                                    height: 30,
+                                    width: 30,
                                     margin: const EdgeInsets.only(right: 15),
                                     decoration: const BoxDecoration(
                                         color: Color(0xffD2D3D3),
                                         shape: BoxShape.circle),
                                   ),
-                                  Row(
-                                    children: [
-                                      const Text(
-                                        "Total interest",
-                                        style: TextStyle(
-                                            color: Color(0xffF3F6FB),
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w300),
-                                      ),
-
-                                      Text(
-                                        "Rs.${calculateInt(sliderValue, interest, time).toStringAsFixed(1)}",
-                                        style: const TextStyle(
-                                            color: Color(0xffF3F6FB),
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    ],
+                                  const Text(
+                                    "Total interest",
+                                    style: TextStyle(
+                                        color: Color(0xffF3F6FB),
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w300),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    "Rs.${calculateInt(sliderValue, interest, time).toStringAsFixed(1)}",
+                                    style: const TextStyle(
+                                        color: Color(0xffF3F6FB),
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600),
                                   )
                                 ],
                               ),
@@ -310,7 +289,8 @@ class _EmiCalculatorFinalState extends State<EmiCalculatorFinal> {
                               padding: const EdgeInsets.only(
                                   top: 8.0, right: 15, left: 15),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   const Text(
                                     "Total",
